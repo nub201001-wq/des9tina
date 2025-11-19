@@ -64,14 +64,43 @@
       background:#fafafa;
     }
 
+    /* Стилі для Spotify плеєра на великих екранах */
+    .spotify-fixed-wrapper {
+        position: fixed; 
+        bottom: 24px; 
+        right: 24px; 
+        z-index: 9999;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+    
+    .spotify-iframe {
+        display: block; /* Важливо для уникнення зайвих відступів */
+        border-radius: 12px;
+    }
+    
     @media (max-width:420px){
       .wrap { padding:18px; border-radius:12px; max-width:94vw; }
       .bank-btn { padding:12px 14px; font-size:16px; grid-template-columns: 44px 1fr; gap:10px; }
       .bank-btn img { width:42px; }
-      /* компактний плеєр */
-      #spotify-player {
-        width: 220px !important;
-        height: 120px !important;
+      
+      /* Адаптація Spotify плеєра для мобільних: 
+         Робимо його нефіксованим і розміщуємо внизу основного контенту
+      */
+      .spotify-fixed-wrapper {
+          position: static; /* Відключаємо фіксоване позиціонування */
+          margin-top: 24px; /* Додаємо відступ від основного контенту */
+          width: 100%;
+          right: auto;
+          bottom: auto;
+          box-shadow: none;
+      }
+      .spotify-iframe {
+          /* Робимо його адаптивним і центруємо */
+          width: 90vw !important; /* !important для перевизначення inline-стилів */
+          max-width: 300px; 
+          height: 120px !important;
+          margin: 0 auto;
       }
     }
 
@@ -148,12 +177,23 @@
         <span class="label">А-Банк</span>
       </button>
     </div>
+    
+    <div class="spotify-fixed-wrapper">
+        <iframe class="spotify-iframe"
+              src="https://open.spotify.com/embed/album/7cPt13UZ75NViCyw0ey6Qc?utm_source=generator&theme=0"
+              width="300"
+              height="152"
+              frameborder="0"
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+              loading="lazy">
+        </iframe>
+    </div>
+    
   </main>
 
   <div id="toast" class="toast"></div>
 
-  <!-- Модалка з QR -->
-<div id="qrModal" class="modal">
+  <div id="qrModal" class="modal">
     <div class="modal-content">
       <h3>Відскануйте у Приват24</h3>
       <img src="qr.png" alt="QR Privat24">
@@ -220,7 +260,7 @@ UA613052990262086400961332478
         if(bank==="privat"){
           // затримка 1.5с перед спробою відкрити додаток
           setTimeout(()=> tryOpenPrivat(), 1500);
-        }else{   
+        }else{    
           // інші банки відкриваються через 1.5с
           setTimeout(()=> window.open(BANKS[bank].web,"_blank"),1500);
         }
@@ -234,40 +274,5 @@ UA613052990262086400961332478
       if(e.target.id==="qrModal") e.currentTarget.classList.remove('show');
     });
   </script>
-
-  <!-- Spotify плеєр у правому верхньому куті -->
-  <iframe id="spotify-player"
-          style="position:fixed; bottom:10px; right:10px; border-radius:12px; z-index:9999;"
-          src="https://open.spotify.com/embed/album/7cPt13UZ75NViCyw0ey6Qc?utm_source=generator&theme=0"
-          width="300"
-          height="152"
-          frameborder="0"
-          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-          loading="lazy">
-  </iframe>
-  <!-- Spotify плеєр справа -->
-  <iframe style="position:fixed; bottom:10px; right:10px; border-radius:12px; z-index:9999;"
-          src="https://open.spotify.com/embed/album/7cPt13UZ75NViCyw0ey6Qc?utm_source=generator&theme=0"
-          width="300"
-          height="152"
-          frameborder="0"
-          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-          loading="lazy">
-  </iframe>
-
-  <!-- Spotify плеєр зліва -->
-  <iframe style="position:fixed; top:10px; left:10px; border-radius:12px; z-index:9999;"
-          src="https://open.spotify.com/embed/album/2UvdfvWcpUcJWQRS4Dq7hD?utm_source=generator"
-          width="300"
-          height="152"
-          frameborder="0"
-          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-          loading="lazy">
-  </iframe>
 </body>
 </html>
-
-
-
-
-
