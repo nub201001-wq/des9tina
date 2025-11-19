@@ -13,8 +13,8 @@
     html,body{height:100%;margin:0}
     body{
       font-family: Inter, Arial, "Helvetica Neue", Helvetica, sans-serif;
-      /* Видаляємо flex, щоб мобільний контент міг прокручуватися */
-      display: block; 
+      /* Стилі для центрування на ПК (і дефолт) */
+      display:flex; 
       align-items:center;
       justify-content:center;
       padding:24px;
@@ -37,8 +37,6 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.18);
       padding: 22px;
       text-align: center;
-      /* Центруємо основний блок на мобільному */
-      margin: 0 auto;
     }
     h1 { margin: 0 0 6px; font-size: 20px; }
     
@@ -84,18 +82,28 @@
 
     /* === БЛОК ВЕРСІЇ ДЛЯ ТЕЛЕФОНУ (МЕДІАЗАПИТ) === */
     @media (max-width:420px){
-      .wrap { padding:18px; border-radius:12px; max-width:94vw; }
+      /* Робимо body прокручуваним на мобільному */
+      body {
+        display: block;
+        padding: 10px; 
+      }
+
+      /* Центруємо основний wrap і даємо йому відступ */
+      .wrap { 
+        padding:18px; 
+        border-radius:12px; 
+        max-width:94vw; 
+        margin: 20px auto; /* Забезпечує центровку і відступ зверху/знизу */
+      }
       .bank-btn { padding:12px 14px; font-size:16px; grid-template-columns: 44px 1fr; gap:10px; }
       .bank-btn img { width:42px; }
       
       /* Агресивна адаптація для обох плеєрів за їхніми ID */
       #spotify-player-right, #spotify-player-left {
-        /* Встановлюємо вузьку адаптивну ширину */
         width: 75vw !important; 
         max-width: 240px !important; 
         height: 120px !important;
         
-        /* Скасовуємо фіксоване позиціонування */
         position: static !important;
         
         /* Скидаємо інлайн-позиціонування */
@@ -104,13 +112,12 @@
         right: auto !important;
         bottom: auto !important;
         
-        /* Встановлюємо як блокові елементи та центруємо */
         display: block !important;
         margin: 20px auto 0 auto !important; 
         box-shadow: none !important; 
       }
       
-      /* Додатковий відступ знизу, щоб плеєр не прилипав до самого низу сторінки */
+      /* Додатковий відступ знизу після останнього плеєра */
       #spotify-player-left { margin-bottom: 20px !important; }
     }
 
