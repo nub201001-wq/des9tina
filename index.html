@@ -72,6 +72,7 @@
         box-shadow: 0 8px 20px rgba(0,0,0,0.2); 
     }
 
+    /* === БЛОК ВЕРСІЇ ДЛЯ ТЕЛЕФОНУ (МЕДІАЗАПИТ) === */
     @media (max-width:420px){
       .wrap { padding:18px; border-radius:12px; max-width:94vw; }
       .bank-btn { padding:12px 14px; font-size:16px; grid-template-columns: 44px 1fr; gap:10px; }
@@ -79,21 +80,18 @@
       
       /* Адаптація Spotify плеєра для мобільних */
       .music-player {
-        /* Зменшуємо розмір, робимо адаптивним і вузьким */
-        width: 90vw !important; 
-        max-width: 280px !important; /* Вужчий, як ви просили */
+        /* Зменшена ширина (75% ширини вікна, але не більше 240px) */
+        width: 75vw !important; 
+        max-width: 240px !important; 
         height: 120px !important;
         
-        /* Скасовуємо фіксоване позиціонування */
+        /* Скасовуємо фіксоване позиціонування, щоб він прокручувався з контентом */
         position: static !important;
         
-        /* Центруємо та додаємо відступ, щоб він прокручувався з контентом */
+        /* Центруємо та додаємо відступ */
         margin: 20px auto 0 auto; 
         box-shadow: none; /* Прибираємо тінь на мобільному */
       }
-      /* Центруємо iframe, який має фіксовану позицію */
-      /* Це вплине на те, якщо iframe залишиться фіксованим (наприклад, #spotify-player) */
-      /* Але оскільки ми скасували position:fixed, ці стилі не застосуються до нього, що і є нашим задумом */
     }
 
     .toast {
