@@ -13,7 +13,8 @@
     html,body{height:100%;margin:0}
     body{
       font-family: Inter, Arial, "Helvetica Neue", Helvetica, sans-serif;
-      display:flex;
+      /* Видаляємо flex, щоб мобільний контент міг прокручуватися */
+      display: block; 
       align-items:center;
       justify-content:center;
       padding:24px;
@@ -36,16 +37,19 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.18);
       padding: 22px;
       text-align: center;
+      /* Центруємо основний блок на мобільному */
+      margin: 0 auto;
     }
     h1 { margin: 0 0 6px; font-size: 20px; }
-    p.lead { margin:0 0 14px; color:#444; fp.lead { 
-  margin: 0 0 14px; 
-  color: #444; 
-  /* Збільшуємо розмір шрифту (наприклад, до 16px або 18px) */
-  font-size: 16px; 
-  /* Робимо шрифт жирним */
-  font-weight: 600; 
-}ont-size:14px; }
+    
+    /* ОНОВЛЕНИЙ СТИЛЬ: Збільшений та жирний шрифт для p.lead */
+    p.lead { 
+      margin: 0 0 14px; 
+      color: #444; 
+      font-size: 16px; 
+      font-weight: 600; 
+    }
+    
     .gift { font-size:42px; margin-bottom:8px; }
 
     .banks { display:flex; flex-direction:column; gap:12px; margin-top:6px; }
@@ -84,7 +88,7 @@
       .bank-btn { padding:12px 14px; font-size:16px; grid-template-columns: 44px 1fr; gap:10px; }
       .bank-btn img { width:42px; }
       
-      /* Адаптація для обох плеєрів за їхніми ID (високий пріоритет) */
+      /* Агресивна адаптація для обох плеєрів за їхніми ID */
       #spotify-player-right, #spotify-player-left {
         /* Встановлюємо вузьку адаптивну ширину */
         width: 75vw !important; 
@@ -94,7 +98,7 @@
         /* Скасовуємо фіксоване позиціонування */
         position: static !important;
         
-        /* Прибираємо інлайн-позиціонування */
+        /* Скидаємо інлайн-позиціонування */
         top: auto !important;
         left: auto !important;
         right: auto !important;
@@ -102,21 +106,12 @@
         
         /* Встановлюємо як блокові елементи та центруємо */
         display: block !important;
-        margin: 20px auto 0 auto; 
-        box-shadow: none; 
+        margin: 20px auto 0 auto !important; 
+        box-shadow: none !important; 
       }
       
-      /* Якщо body є контейнером для центрування на мобільному (він є) */
-      body {
-        /* Дозволяє контенту прокручуватися, якщо плеєри тепер static */
-        display: block; 
-        padding: 10px; 
-      }
-
-      /* Центруємо основний wrap для статичного контенту */
-      .wrap {
-        margin: 0 auto;
-      }
+      /* Додатковий відступ знизу, щоб плеєр не прилипав до самого низу сторінки */
+      #spotify-player-left { margin-bottom: 20px !important; }
     }
 
     .toast {
